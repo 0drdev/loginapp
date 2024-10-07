@@ -51,7 +51,13 @@ const UserController = {
       // Almacena el token en una cookie
       res.cookie('authToken', token, { httpOnly: true })
       console.log(token)
-      return res.redirect('/admin') // Redirige a /admin si es admin o editor
+
+      // Redirige al usuario según su rol
+      if (user.role === 'admin' || user.role === 'editor') {
+        return res.redirect('/admin') // Redirige a /admin si es admin o editor
+      } else {
+        return res.redirect('/') // Redirige a la raíz si es cliente
+      }
     } catch (err) {
       console.error(err)
       res
@@ -63,7 +69,7 @@ const UserController = {
     // Elimina la cookie del token
     res.clearCookie('authToken')
     res.redirect('/user/login') // Redirige al login tras cerrar sesión
-    console.log('Usuario desconectado')
+    console.log('Usuario Desconectado')
   }
 }
 
