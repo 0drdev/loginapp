@@ -2,10 +2,11 @@ let express = require('express')
 let router = express.Router()
 const userRouter = require('../routes/user')
 const adminRouter = require('../routes/admin')
+const authMiddleware = require('../middleware/authMiddleware')
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Login App' })
+router.get('/', authMiddleware, function (req, res, next) {
+  res.render('index', { title: 'Login App', user: req.user })
 })
 
 // Routes user
