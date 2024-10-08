@@ -4,25 +4,22 @@ const secretKey = 'tuClaveSecretaJWT'
 
 const UserController = {
   login: (req, res) => {
-    // Si el usuario ya está autenticado, redirige al admin
+    // If the user is already logged in, redirects to admin.
     if (req.user) {
       return res.redirect('/')
     }
-    // Si no, muestra el formulario de login
+    // If not, it shows the login form
     res.render('login', { user: req.user })
   },
   processLogin: (req, res) => {
     const { email, password } = req.body
 
-    console.log('Email:', email) // Depuración
-    console.log('Password:', password) // Depuración
-
     try {
-      // Primero, busca al usuario solo por email
+      // First, search the userby email only
       const user = users.find((user) => user.email === email)
 
       if (!user) {
-        // Si el usuario no existe, renderiza con mensaje de error
+        // If the user does not exist, render with error message
         return res.status(401).render('login', {
           error: 'User not found',
           email: email,
@@ -31,7 +28,7 @@ const UserController = {
       }
 
       if (user.password !== password) {
-        // Si el usuario existe pero la contraseña es incorrecta
+        // If the user exists but the password is wrong
         return res.status(401).render('login', {
           error: 'Password Incorrect',
           email: email,
@@ -39,7 +36,7 @@ const UserController = {
         })
       }
 
-      // Generar token JWT con los datos del usuario
+      // Generate JWT token with user data
       const token = jwt.sign(
         { name: user.name, email: user.email, role: user.role },
         secretKey,
@@ -48,15 +45,15 @@ const UserController = {
         }
       )
 
-      // Almacena el token en una cookie
+      // Stores the token in a cookie
       res.cookie('authToken', token, { httpOnly: true })
       console.log(token)
 
-      // Redirige al usuario según su rol
+      // Redirects the user according to their role
       if (user.role === 'admin' || user.role === 'editor') {
-        return res.redirect('/admin') // Redirige a /admin si es admin o editor
+        return res.redirect('/admin') // Redirect to /admin if you are admin or editor
       } else {
-        return res.redirect('/') // Redirige a la raíz si es cliente
+        return res.redirect('/') // Redirect to / you are client
       }
     } catch (err) {
       console.error(err)
@@ -66,10 +63,9 @@ const UserController = {
     }
   },
   logout: (req, res) => {
-    // Elimina la cookie del token
+    // Delete the token cookie
     res.clearCookie('authToken')
-    res.redirect('/user/login') // Redirige al login tras cerrar sesión
-    console.log('Usuario Desconectado')
+    res.redirect('/user/login') // Redirects to login after logging out
   }
 }
 

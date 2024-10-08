@@ -4,12 +4,13 @@ const UserController = require('../controllers/UserController')
 const authMiddleware = require('../middleware/authMiddleware')
 const adminMiddleware = require('../middleware/adminMiddleware')
 
-//Renderiza el formulario
+//Render login form
 router.get('/login', authMiddleware, UserController.login)
 
-//Procesa el login
+//Process login
 router.post('/login', UserController.processLogin)
 
+//Process loguout
 router.get('/logout', UserController.logout)
 
 module.exports = router

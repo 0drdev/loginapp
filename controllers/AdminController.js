@@ -1,8 +1,5 @@
-const jwt = require('jsonwebtoken')
-const users = require('../data/users.json')
-const secretKey = 'tuClaveSecretaJWT'
-
 const AdminController = {
+  //Render view home
   home: (req, res) => {
     res.render('admin/home', { user: req.user })
   }

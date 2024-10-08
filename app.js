@@ -36,6 +36,11 @@ app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
+  // If it's not development, make sure the error message is not sensitive.
+  if (req.app.get('env') !== 'development') {
+    res.locals.message =
+      'Ocurrió un error en el servidor. Por favor, inténtalo de nuevo más tarde.'
+  }
 
   // render the error page
   res.status(err.status || 500)

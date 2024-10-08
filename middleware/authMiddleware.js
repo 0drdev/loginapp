@@ -4,21 +4,21 @@ const secretKey = 'tuClaveSecretaJWT'
 const authMiddleware = (req, res, next) => {
   const token = req.cookies.authToken
 
-  // Verifica si hay un token
+  // check for a token
   if (token) {
     try {
       // Verifica y decodifica el token
       const decoded = jwt.verify(token, secretKey)
-      req.user = decoded // Almacena los datos del usuario decodificado
-      return next() // Continua a la siguiente ruta
+      req.user = decoded // Stores decoded user data
+      return next() // Continue to the next route
     } catch (error) {
       console.error('Token inválido o expirado', error)
-      // Redirige al login si el token es inválido o ha expirado
+      // Redirects to login if token is invalid or expired
       return res.redirect('/user/login')
     }
   }
 
-  // Si no hay token, permite el acceso a la página de login
+  // If no token is present, allow access to the login page.
   next()
 }
 
