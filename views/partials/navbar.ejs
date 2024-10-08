@@ -1,32 +1,32 @@
-<nav class="navbar navbar-expand-lg bg-dark">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <svg class="mx-3" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24">
-      <g fill="none" stroke="#6B925C" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <g fill="none" stroke="#FFF2CD" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
         <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0" />
         <path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0-6 0m-2.832 8.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855" />
       </g>
     </svg>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler bg-warning-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item text-center">
           <a class="nav-link text-white" aria-current="page" href="/">Home</a>
         </li>
         <% if (user && (user.role === 'admin' || user.role === 'editor')) { %>
-          <li class="nav-item">
+          <li class="nav-item text-center">
             <a class="nav-link text-white" href="/admin">Admin</a>
           </li>
         <% } %>        
 
         <!-- Mostrar el enlace de Logout solo si el usuario está autenticado -->
         <% if (user) { %>
-          <li class="nav-item">
+          <li class="nav-item text-center">
             <a class="nav-link text-danger" href="/user/logout">Logout</a>
           </li>
         <% } else { %>
-          <li class="nav-item">
+          <li class="nav-item text-center">
             <a class="nav-link text-white" href="/user/login">Login</a>
           </li>
         <% } %>
