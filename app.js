@@ -10,6 +10,9 @@ const favicon = require('serve-favicon')
 
 let app = express()
 
+// Import conection to database
+const db = require('./database/config.js')
+
 const PORT = process.env.PORT || 3000
 
 // view engine setup
