@@ -1,14 +1,25 @@
-const mysql = require('mysql2')
+const mysql = require('mysql2/promise') // Make sure to import the promises module
 
-const connection = mysql.createConnection({
+// Create a pool of connections
+const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
+  database: 'auth_db',
   password: 'DRD#99#drdr'
 })
 
-connection.connect(function (err) {
-  if (err) throw err
-  console.log('Connected To Database!')
-})
+// Test the connection
+async function testConnection() {
+  try {
+    const connection = await pool.getConnection() // Get a connection from the pool
+    console.log('Connected to the database successfully')
+    connection.release() // Release the connection when done
+  } catch (err) {
+    console.error('Error connecting to the database:', err)
+  }
+}
 
-module.exports = connection
+testConnection()
+
+// Export the pool for use in other modules
+module.exports = pool // No need to call .promise() here
