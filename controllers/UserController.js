@@ -21,7 +21,7 @@ const UserController = {
   testLogin: async (req, res) => {
     try {
       // Use promise-based query to get all users
-      const [results] = await db.query('SELECT email FROM users') // No necesitas llamar a .promise()
+      const [results] = await db.query('SELECT * FROM users') // No necesitas llamar a .promise()
 
       // Render the results as JSON
       return res.json(results)

@@ -13,4 +13,7 @@ router.post('/login', UserController.processLogin)
 //Process loguout
 router.get('/logout', UserController.logout)
 
+//Route test get data to database
+router.get('/test', UserController.testLogin)
+
 module.exports = router
