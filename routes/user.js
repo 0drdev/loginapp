@@ -1,5 +1,6 @@
 let express = require('express')
 let router = express.Router()
+const { loginLimiter } = require('../middleware/loginLimiter')
 const UserController = require('../controllers/UserController')
 const authMiddleware = require('../middleware/authMiddleware')
 const adminMiddleware = require('../middleware/adminMiddleware')
@@ -8,12 +9,9 @@ const adminMiddleware = require('../middleware/adminMiddleware')
 router.get('/login', authMiddleware, UserController.login)
 
 //Process login
-router.post('/login', UserController.processLogin)
+router.post('/login', authMiddleware, loginLimiter, UserController.processLogin)
 
 //Process loguout
 router.get('/logout', UserController.logout)
-
-//Route test get data to database
-router.get('/test', UserController.testLogin)
 
 module.exports = router

@@ -15,9 +15,9 @@
 <body class="bg-dark p-0">
   <%- include('../views/partials/navbar.ejs') %>
 
-    <h1 class="pt-4 text-center">Login User</h1>
-
-    <section class="text-center d-flex justify-content-center align-items-center py-5">
+  
+  <section class="text-center d-flex flex-column py-5">
+      <h1 class="pt-4 text-center mb-4">Login Page</h1>
       <form method="post" action="/user/login">
         <!-- Mensaje de error -->
         <% if (typeof error !=='undefined' ) { %>

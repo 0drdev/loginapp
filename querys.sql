@@ -10,10 +10,10 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 INSERT INTO users (name, email, password, role) 
-VALUES ('Juan', 'juan@example.com', '$2y$10$gk.pATAiSD7552BZYGnyTOq81bxlrGYz.NF2Lx0825QZCGNBAl1rS', 'admin');
+VALUES ('Juan', 'juan@example.com', '$2a$12$28jQCqAuItLXjF8WRJmeu.G6tk9U/9bE3.aVa4w5sDvQZKgiJil7K', 'admin');
 
 INSERT INTO users (name, email, password, role) 
-VALUES ('Maria', 'maria@example.com', '$2y$10$gk.pATAiSD7552BZYGnyTOq81bxlrGYz.NF2Lx0825QZCGNBAl1rS', 'editor');
+VALUES ('Maria', 'maria@example.com', '$2a$12$28jQCqAuItLXjF8WRJmeu.G6tk9U/9bE3.aVa4w5sDvQZKgiJil7K', 'editor');
 
 INSERT INTO users (name, email, password, role) 
-VALUES ('Luis', 'luis@example.com', '$2y$10$gk.pATAiSD7552BZYGnyTOq81bxlrGYz.NF2Lx0825QZCGNBAl1rS', 'client');
+VALUES ('Luis', 'luis@example.com', '$2a$12$28jQCqAuItLXjF8WRJmeu.G6tk9U/9bE3.aVa4w5sDvQZKgiJil7K', 'client');
